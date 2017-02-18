@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></Title>
+    <link rel="stylesheet" href="../../lib/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../../lib/jQuery-pager-plugin/Pager.css">
+    <style>
+        ul{list-style: none;
+            margin-left:400px;
+        }
+      ul li{
+          float:left;
+          padding:10px 20px;
+          border:1px solid #ccc;
+      }
+img{
+    width:60px;
+    height:30px;
+}
+    </style>
+</head>
+<body>
+<div class="content">
+    <table class="table table-bordered">
+        <!--<tr>-->
+            <!--<th>商品ID：</th>-->
+            <!--<th>创建日期：</th>-->
+            <!--<th>商品描述：</th>-->
+            <!--<th>名称：</th>-->
+            <!--<th>商品价格：</th>-->
+            <!--<th>图片：</th>-->
+        <!--</tr>-->
+
+    </table>
+    <table class="table table-bordered" id="content1">
+
+    </table>
+
+</div>
+<div class="box">
+
+</div>
+
+<script src="../../lib/artTemplate/dist/template.js"></script>
+<script id="test" type="text/html">
+    <h1>商品列表</h1>
+    <a href="tianjiashangpin.html">添加商品</a>
+  <table>
+      {{if count!=0}}
+  <tr>
+      <th>商品ID：</th>
+      <th>创建日期：</th>
+      <th>商品描述：</th>
+      <th>名称：</th>
+      <th>商品价格：</th>
+      <th>图片：</th>
+        <th>商品下架：</th>
+        <th>修改商品信息</th>
+  </tr>
+      {{each rows as value i}}
+      <tr>
+          <td>{{value.id}}</td>
+          <td>{{value.createTime}}</td>
+          <td>{{value.description}}</td>
+          <td>{{value.name}}</td>
+          <td>{{value.price}}</td>
+          <td><img src={{'http://192.168.1.110:3000/'+value.images}}></td>
+          <td><button data-id="{{value.id}}" class="btn btn-danger">上架</button><button data-id="{{value.id}}" class="btn btn-success">下架商品</button> </td>
+          <td><input type="button" data-id="{{value.id}}" value="修改商品" class="btn btn-danger"/></td>
+      </tr>
+      {{/each}}
+      {{/if}}
+  </table>
+</script>
+</body>
+<script src="../../lib/jquery/dist/jquery.min.js"></script>
+<script src="../../lib/bootstrap/dist/js/bootstrap.js"></script>
+<script src="../../lib/jQuery-pager-plugin/jquery.pager.js"></script>
+<script src="../../lib/layer/build/layer.js"></script>
+<script>
+    tt();
+    function tt(){
+        var list;
+        $.ajaxSetup({
+            headers: {'access-token':sessionStorage.getItem('manager-1')}
+        });
+        getDate(1)
+        function getDate(index){
+            var html="";
+            var html2=""
+            $.ajax({
+                url:"http://192.168.1.110:3000/seller/getAllGoods",
+                type:"get",
+                data:{page:index,size:5,sid:191},
+                success:function(data) {
+                    list = data.data.rows;
+                    html =template("test",data.data)
+                    document.getElementById("content1").innerHTML=html
+                    $(".box").pager({pagenumber:index,pagecount:data.data.count,buttonClickCallback:getDate})
+                }
+            })
+            return false;
+
+        }
+
+             $("#content1").on("click","button",function(){
+                 var id=$(this).data("id")
+                 console.log(id)
+                 $.post("http://192.168.1.110:3000/seller/disableGoods",{id:id},function(data){
+
+                 alert("商品下架成功")
+                 })
+
+             })
+
+
+    }
+    $("#content1").on("click","input",function(){
+        var id=$(this).data("id")
+        console.log(id)
+        $.post("http://192.168.1.110:3000/seller/disableGoods",{id:id},function(data){
+
+        layer.open({
+                type: 2,
+                title: false,
+                closeBtn: 0, //不显示关闭按钮
+                shade: [0],
+                area: ['340px', '215px'],
+                offset: 'rb', //右下角弹出
+                time: 2000, //2秒后自动关闭
+                anim: 2,
+                content: [' content:xiugaishangpinxinxi.html?id=id ', 'no'], //iframe的url，no代表不显示滚动条
+                end: function(){ //此处用于演示
+            layer.open({
+                type: 2,
+                title: '修改商品信息',
+                shadeClose: true,
+                shade: false,
+                maxmin: true, //开启最大化最小化按钮
+                area: ['893px', '600px'],
+                content: '?id=id'
+            });
+        }
+    });
+
+        })
+
+    })
+    //iframe窗
+//$("table").click(function(){
+//    layer.open({
+//        type: 2,
+//        title: false,
+//        closeBtn: 0, //不显示关闭按钮
+//        shade: [0],
+//        area: ['340px', '215px'],
+//        offset: 'rb', //右下角弹出
+//        time: 2000, //2秒后自动关闭
+//        anim: 2,
+//        content: ['iframe.html', 'no'], //iframe的url，no代表不显示滚动条
+//        end: function(){ //此处用于演示
+//            layer.open({
+//                type: 2,
+//                title: '修改商品信息',
+//                shadeClose: true,
+//                shade: false,
+//                maxmin: true, //开启最大化最小化按钮
+//                area: ['893px', '600px'],
+//                content: 'xiugaishangpinxinxi.html'
+//            });
+//        }
+//    });
+//})
+
+
+
+</script>
+</html>

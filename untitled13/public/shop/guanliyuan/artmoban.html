@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../lib/bootstrap/dist/css/bootstrap.css">
+</head>
+<body>
+<script type="text/html" id="test">
+    <table>
+    {{each rows as value i}}
+    <tr>
+    <td>{{value.cityname}}</td>
+    <td>{{value.name}}</td>
+    <td>{{value.price}}</td>
+    <td>{{value.id}}</td>
+    <td>{{value.star}}</td>
+    <td>{{value.temname}}</td>
+    </tr>
+    {{/each}}
+    </table>
+</script>
+<div id="list"></div>
+<div id="contain">
+
+</div>
+</body>
+<script src="../../lib/jquery/dist/jquery.min.js"></script>
+<script src="../../lib/bootstrap/dist/js/bootstrap.js"></script>
+<script src="../../lib/jQuery-pager-plugin/jquery.pager.js"></script>
+<script src="../../lib/artTemplate/dist/template.js"></script>
+<script src="./data1.js"></script>
+<script>
+   var html=template('test',data)
+   getDate(1)
+   function getDate(index) {
+       $('#list').innerHTML=html;
+       $(".contain").pager({pagenumber: index, buttonClickCallback: getDate})
+   }
+</script>
+</html>

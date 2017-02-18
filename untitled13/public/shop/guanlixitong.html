@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../lib/bootstrap/dist/css/bootstrap.css">
+    <style>
+        body{
+            background: #46b8da;
+            padding:20px 0;
+        }
+        #add_html{
+            width:70%;
+            border: none;
+            height:600px;
+        }
+    </style>
+</head>
+<body>
+<div class="container pull-left">
+    <div class="panel-group col-md-3" id="accordion" role="tablist" aria-multiselectable="true" >
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingTwo">
+                <h4 class="panel-title">
+                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        管理员管理
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                <div class="panel-body bg-primary">
+                        <a href="shop2.html" class="list-group-item text-center" id="gl">管理员登录</a>
+                        <a href="chongzhimima.html" class="list-group-item text-center" id="cm">重置管理密码</a>
+                        <a href="huoquguanliyuan_message.html" class="list-group-item text-center" id="huo_x">获取管理员信息</a>
+                        <a href="change_guanliyuanxinxi.html" class="list-group-item text-center" id="xiu_x">修改管理员信息</a>
+                        <a href="tianjia_guanliyuan.html" class="list-group-item text-center" ix="tian_y">添加管理员</a>
+                        <a href="guanliyuanlibao.html" class="list-group-item text-center" id="gb">管理员列表</a>
+                        <a href="guanliyuan_denglu.html" class="list-group-item text-center" id="dl">登录</a>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+
+
+</div>
+<script>
+    $("#accordion").on("click", ".list-group-item", function(){
+        var href=$(this).attr("href");
+        location.src=href;
+        return false;
+    })
+</script>
+
+
+</body>
+<script src="../lib/jquery/dist/jquery.min.js"></script>
+<script src="../lib/bootstrap/dist/js/bootstrap.js"></script>
+</html>

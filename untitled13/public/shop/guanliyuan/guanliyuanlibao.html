@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--<link rel="stylesheet" href="./guanliyuanliebiab.css"/>-->
+    <style>
+    #total table td{
+       width:150px;
+       height:30px ;
+       border:1px solid #ccc;
+       text-align:center;
+   }
+    #list1{
+        padding-left: 0;
+        margin-top:0;
+    }
+        h1{
+            margin-left:65px;
+           margin-top:60px;
+        }
+    </style>
+</head>
+<body>
+<h1>
+           管理员列表
+</h1>
+<div id="total">
+    <table>
+        <tr>
+            <td>ID</td>
+            <td>名称</td>
+            <td>密码</td>
+            <td>remark</td>
+        </tr>
+    </table>
+    <ul id="list1">
+    </ul>
+</div>
+
+</body>
+<script type="text/html" id="dd">
+    <table>
+        <tr>
+            <td>{id}</td>
+            <td>{name}</td>
+            <td>{password}</td>
+            <td>{remark}</td>
+        </tr>
+    </table>
+</script>
+<script>
+    $.ajaxSetup({
+        headers: {'access-token':sessionStorage.getItem('manager')}
+    });
+    var list;
+    var dd=document.getElementById("dd").innerHTML;
+    var xhr=new XMLHttpRequest();
+    xhr.open("get"," http://192.168.1.110:3000/getAllManagers");
+    xhr.send();
+    xhr.onload=function(){
+        var html="";
+      if(xhr.status==200){
+          list=JSON.parse(xhr.responseText).data;
+      }
+        list.forEach(function(item){
+       if(item.name){
+           html+=dd.replace(/\{id\}/,item.id).replace(/\{name\}/,item.name).replace(/\{password\}/,item.password).replace(/\{remark\}/,item.remark)
+       }
+
+         // html+="<li>"+item.id+"</li>"+"<li>"+item.name+"</li>"+"<li>"+item.password+"</li>"+"<li>"+item.remark+"</li>"
+
+        });
+       document.getElementById("list1").innerHTML=html;
+    };
+</script>
+<script src="../../lib/jquery/dist/jquery.min.js"></script>
+<script src="../../lib/bootstrap/dist/js/bootstrap.js"></script>
+</html>

@@ -1,0 +1,23 @@
+{
+  "name": "untitled13",
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "boot#^3.3.7",
+    "jquery-validation": "jquery-validate#^1.16.0",
+    "artTemplate": "^3.0.1",
+    "jquery-form": "^3.46.0",
+    "jQuery-pager-plugin": "*",
+    "layer": "^3.0.1"
+  }
+}

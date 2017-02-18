@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../lib/bootstrap/dist/css/bootstrap.css">
+    <style>
+      #box{
+          margin:100px 0 0 300px;
+      }
+        .error{
+            color:red;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>注册商家：</h1>
+
+    <div class="center-block" id="box">
+        <h2 clas="center-block ">商家信息:</h2>
+        <form action=""role="form" class="col-md-7" id="sellerRegister">
+            <div class="form-group">
+                <label for="">商家名称:</label>
+                <input type="text" class="form-control" name="name">
+            </div>
+            <div class="form-group">
+                <label for="">邮箱:</label>
+                <input type="email"  class="form-control" name="email">
+            </div>
+            <div class="form-group">
+                <label for="">地址：</label>
+                <input type="text"  class="form-control" name="address">
+            </div>
+            <div class="form-group">
+                <label for="">手机:</label>
+                <input type="text"  class="form-control" name="phone">
+            </div>
+            <div class="form-group">
+                <label for="">描述:</label>
+                <input type="text" class="form-control" name="description">
+            </div>
+            <div class="form-group">
+                <label for="">类型:</label>
+                <input type="text"  class="form-control" name="types">
+            </div>
+            <div class="form-group">
+                <label for="">法人:</label>
+                <input type="text"  class="form-control" name="owner">
+            </div>
+            <div class="form-group">
+                <label for="">证件照片:</label>
+                <input type="file"  class="form-control" name="license">
+            </div>
+            <div class="form-group">
+                <label for="">身份证号:</label>
+                <input type="text"  class="form-control" name="idCard">
+            </div>
+            <div class="form-group">
+                <label for="">图片:</label>
+                <input type="file"  class="form-control" name="images">
+            </div>
+            <div class="form-group">
+                <label for="">纬度:</label>
+                <input type="text"  class="form-control" name="latitude">
+            </div>
+            <div class="form-group">
+            <label for="">精度:</label>
+            <input type="text"  class="form-control" name="longitude">
+        </div>
+            <input type="submit" class="btn btn-danger" value="注册">
+        </form>
+    </div>
+
+</body>
+<script src="../../lib/jquery/dist/jquery.min.js"></script>
+<script src="../../lib/bootstrap/dist/js/bootstrap.js"></script>
+<script src="../../lib/jquery-form/jquery.form.js"></script>
+<script src="../../lib/jquery-validation/dist/jquery.validate.js"></script>
+
+<script>
+    $('#sellerRegister').submit(function(e){
+        $(this).ajaxSubmit({
+            type:'post',
+            url:'http://192.168.1.110:3000/seller/regSeller',
+            success:function(data){
+                console.log(data);
+            }
+        });
+        e.preventDefault();
+    })
+</script>
+<script>
+$("#sellerRegister").validate({
+    rules:{
+       name:"required",
+        email:{
+           required:true,
+            email:true,
+        },
+        address:"required",
+        phone:{
+           required:true,
+            minlength:6,
+            maxlength:12,
+        },
+        description:"required",
+        types:"required",
+        owner:"required",
+        license:"required",
+        idCard:{
+            required:true,
+            minlength:6,
+            maxlength:10
+        },
+        image:"required",
+        latitude:{
+            required:true,
+            minlength:2,
+            maxlength:4
+        },
+        longitude:{
+            required:true,
+            minlength:2,
+            maxlength:4
+        }
+    },
+    messages:{
+        name: "请输入正确名称",
+        email: "填email邮箱",
+        description: "请描述一下商家",
+        address: "请填写详细地址",
+        phone: "电话号码6-12位",
+        types: "商家类型",
+        owner: "法人",
+        license: "请上传证件照",
+        idCard: "请填写6-10位身份证",
+        image: "上传图片",
+        latitude: "精度2-4位",
+        longitude: "维度2-4位"
+    }
+
+})
+
+
+
+</script>
+</html>

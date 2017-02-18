@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../lib/bootstrap/dist/css/bootstrap.css">
+    <style>
+        span{width: 100px;display: inline-block;line-height: 30px;height:30px;}
+    </style>
+</head>
+<body>
+<h1>管理员信息查询</h1>
+<div class="container">
+    <form role="form" id="qw">
+        <div class="form-group">
+            <label>请输入管理员ID</label>
+            <input type="text" name="id" class="form-control" >
+        </div>
+        <input type="submit" value="查询" class="as">
+        <div class="ws"></div>
+    </form>
+</div>
+
+<script src="../../lib/jquery/dist/jquery.min.js"></script>
+<script src="../../lib/bootstrap/dist/js/bootstrap.js"></script>
+<script>
+    var ss;
+    var a;
+    $('.as').click(function () {
+        a=$('input')[0].value;
+    });
+    $('#qw').submit(function () {
+        $.ajaxSetup({
+            headers: {'access-token':sessionStorage.getItem('manager')}
+        });
+        $.ajax({   url:'http://192.168.1.110:3000/getManager',
+            data:{id:a},
+            type:'get',
+            success: function (data) {
+                ss=data.data;
+                var div=document.createElement('div');
+                div.innerHTML='<span>'+ss.id+'</span>'+
+                    '<span>'+ss.name+'</span>'+
+                    '<span>'+ss.password+'</span>'+'<span>'+ss.remark+'</span>'
+                document.querySelector('.ws').appendChild(div);
+            }});return false;
+
+    });
+    </script>

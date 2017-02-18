@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../lib/bootstrap/dist/css/bootstrap.css">
+
+</head>
+<body>
+<div class="container">
+    <h2>管理人信息修改：</h2>
+    <form action=""role="form" class="col-xs-5" id="form_add">
+
+        <div class="form-group">
+            <label for="">登录名称:</label>
+            <input type="text"  class="form-control" name="name">
+        </div>
+        <div class="form-group">
+            <label for="">密码:</label>
+            <input type="password"  class="form-control" name="password">
+        </div>
+        <div class="form-group">
+            <label for="">说明:</label>
+            <input type="text"  class="form-control" name="remark">
+        </div>
+        <div class="form-group">
+            <label for="">用户ID:</label>
+            <input type="text"  class="form-control" name="id">
+        </div>
+        <input type="submit" class="btn btn-danger" value="修改信息">
+    </form>
+</div>
+<script src="../../lib/jquery/dist/jquery.min.js"></script>
+<script src="../../lib/bootstrap/dist/js/bootstrap.js"></script>
+<script>
+    $.ajaxSetup({
+        headers: {'access-token':sessionStorage.getItem('manager')}
+    });
+$("form").submit(function() {
+    $.post(" http://192.168.1.110:3000/updateManager", $("#form_add").serialize(), function (data){
+//                    console.log(data)
+//                  console.log(1)
+        alert("修改成功")
+    })
+})
+</script>
+</body>
+
+</html>

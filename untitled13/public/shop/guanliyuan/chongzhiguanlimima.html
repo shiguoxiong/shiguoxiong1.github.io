@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../lib/bootstrap/dist/css/bootstrap.css">
+
+</head>
+<div class="container">
+    <h2>重置密码</h2>
+    <form action="" role="form" class="col-md-6" id="form1">
+        <!--<div class="form-group">-->
+            <!--<label for="">ID号：</label>-->
+            <!--<input type="text" class="form-control" name="id">-->
+        <!--</div>-->
+        <div class="form-group">
+            <label for="">新密码：</label>
+            <input type="password" class="form-control" name="password" id="word">
+        </div>
+        <input type="submit" class="btn btn-success" value="重置密码" >
+    </form>
+</div>
+
+<body>
+<script src="../../lib/jquery/dist/jquery.min.js"></script>
+<script src="../../lib/bootstrap/dist/js/bootstrap.js"></script>
+<script>
+    $.ajaxSetup({
+        headers: {'access-token':sessionStorage.getItem('manager')}
+    });
+    $("#form1").submit(function() {
+        var bb=$("#word").val()
+       $.ajax({
+           url:"http://192.168.1.110:3000/resetManagerPwd",
+           method:"post",
+           data:{password:bb,id:547},
+           success:function(data){
+           console.log(data)
+               console.log(bb)
+           }
+       })
+        return false;
+    })
+//$(function(){
+//    $("form").submit(function(){
+//        $.post("http://192.168.1.110:3000/resetManagerPwd",$("#form1").serialize(),function(data){
+//         //   if(data.code==0){
+//                console.log(data)
+//            console.log($("#form1").serialize())
+//           // }
+//        })
+//    })
+//})
+
+</script>
+</body>
+
+</html>

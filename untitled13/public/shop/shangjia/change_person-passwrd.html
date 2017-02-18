@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../lib/bootstrap/dist/css/bootstrap.css">
+
+    <style>
+        body{
+            background: blue;
+        }
+        #content{
+          width:400px;
+            height:400px;
+            border:1px solid #ccc;
+           padding:20px 50px;
+            margin-top:60px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="content">
+            <h2>密码修改</h2>
+            <form action="" role="form" class="col-md-10" id="form">
+                <div class="form-group">
+                    <label for="card">商户ID：</label>
+                    <input type="text" id="card" name="id" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="new">旧密码：</label>
+                    <input type="password" id="new" name="oldPwd" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="">新密码：</label>
+                    <input type="password" name="newPwd" class="form-control">
+                </div>
+                <input type="submit" value="密码重置" name="next" class="btn btn-success">
+            </form>
+        </div>
+    </div>
+
+</body>
+<!--<script src="../../lib/jquery-validation/dist/jquery.validate.js"></script>-->
+<script src="../../lib/jquery/dist/jquery.min.js"></script>
+<script src="../../lib/bootstrap/dist/js/bootstrap.js"></script>
+<script>
+
+   $(function(){
+       $.ajaxSetup({
+           headers: {'access-token':sessionStorage.getItem('manager-1')}
+       });
+       $("#form").submit(function(e){
+           $.post("http://192.168.1.110:3000/seller/updateSellerPwd",$("form").serialize(),function(data){
+               console.log(data)
+               alert("修改密码成功")
+           })
+           e.preventDefault()
+       })
+
+   })
+</script>
+
+</html>

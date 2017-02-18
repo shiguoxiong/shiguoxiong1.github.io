@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></Title>
+    <link rel="stylesheet" href="../../lib/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../../lib/jQuery-pager-plugin/Pager.css">
+    <style>
+
+    </style>
+</head>
+<body>
+<div class="content">
+    <form action="" role="form"  class="col-md-6" id="form2">
+        <div class="form-group">
+            <label for="">商品ID:</label>
+            <input type="text" name="id" class="form-control">
+        </div>
+        <input type="submit" class="form-control btn btn-success" value="下架商品">
+    </form>
+</div>
+</body>
+<script src="../../lib/jquery/dist/jquery.min.js"></script>
+<script src="../../lib/bootstrap/dist/js/bootstrap.js"></script>
+<script src="../../lib/jQuery-pager-plugin/jquery.pager.js"></script>
+<script src="../../lib/jquery-form/jquery.form.js"></script>
+<script>
+    $.ajaxSetup({
+        headers: {'access-token':sessionStorage.getItem('manager-1')}
+    });
+    $("#form2").submit(function(){
+        console.log($(this).serialize())
+        $.post("http://192.168.1.110:3000/seller/disableGoods",$(this).serialize(),function(data){
+            alert("商品下架成功")
+        })
+        return false;
+    })
+</script>
+    </html>

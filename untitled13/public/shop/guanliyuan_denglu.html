@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../lib/bootstrap/dist/css/bootstrap.css">
+</head>
+<body>
+<div class="container">
+    <div class="box">
+        <form action=""role="form" class="form-horizontal col-md-7" id="deng">
+            <h2 class="text-center">管理员登录</h2>
+            <div class="form-group">
+                <label for="useName" class="col-md-2 control-label">管理员名称:</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" id="useName" name="name">
+                </div>
+
+            </div>
+            <div class="form-group">
+                <label for="usePass" class="col-md-2 control-label">密码:</label>
+                <div class="col-md-8">
+                    <input type="password" class="form-control" id="usePass" name="password">
+                </div>
+            </div>
+            <div class="col-md-8 col-md-offset-2" >
+                <input type="submit"  value="登录" class="btn btn-success btn-block">
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+
+</body>
+<script src="../lib/jquery/dist/jquery.min.js"></script>
+<script src="../lib/bootstrap/dist/js/bootstrap.js"></script>
+<script>
+    $('form').submit(function () {
+        $.post('http://192.168.1.110:3000/login',$("#deng").serialize(),function (data) {
+            if(data.code==0){
+                // console.log(1)
+                location.href="guanlixitong.html";
+            }
+        });
+        return false;
+    })
+
+</script>
+</html>

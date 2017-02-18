@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../lib/bootstrap/dist/css/bootstrap.css">
+    <style>
+        body{
+            background: #46b8da;
+            padding:20px 0;
+        }
+        #add_html{
+            width:70%;
+            border: none;
+            height:600px;
+        }
+    </style>
+</head>
+<body>
+<div class="container pull-left">
+    <div class="panel-group col-md-3" id="accordion" role="tablist" aria-multiselectable="true" >
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingTwo">
+                <h4 class="panel-title">
+                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                       管理员登录
+                    </a>
+                </h4>
+            </div>
+
+        </div>
+    </div>
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <link rel="stylesheet" href="../lib/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="shop_1.css">
+        <style>
+
+        </style>
+    </head>
+    <body>
+    <div class="container">
+            <form action=""role="form" class="form-horizontal col-md-10" id="deng">
+                <h2>管理员登录系统</h2>
+                <div class="form-group">
+                    <label for="useName" class="col-md-2 control-label">管理员名称:</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="useName" name="uesname">
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label for="usePass" class="col-md-2 control-label">管理员密码:</label>
+                    <div class="col-md-8">
+                        <input type="password" class="form-control" id="usePass" name="password">
+                    </div>
+                </div>
+                <div class="col-md-8 col-md-offset-2" >
+                    <input type="submit"  value="登录" class="btn btn-success btn-block">
+                </div>
+
+            </form>
+
+
+    </div>
+    <script src="../lib/jquery/dist/jquery.min.js"></script>
+    <script src="../lib/bootstrap/dist/js/bootstrap.js"></script>
+<script>
+    $('#deng').submit(function () {
+        $.post('http://192.168.1.110:3000/login',$("#deng").serialize(),function (data) {
+            if(data.code==0){
+                // console.log(1)
+                location.href="guanlixitong.html";
+            }
+        });
+        return false;
+    })
+
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../lib/bootstrap/dist/css/bootstrap.css">
+    <style>
+        body{
+            background: #46b8da;
+            padding:20px 0;
+        }
+        #add_html{
+            width:70%;
+            border: none;
+            height:600px;
+        }
+    </style>
+</head>
+<body>
+<div class="container pull-left">
+    <div class="panel-group col-md-3" id="accordion" role="tablist" aria-multiselectable="true" >
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingTwo">
+                <h4 class="panel-title">
+                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                       商家管理
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                <div class="panel-body bg-primary">
+
+                    <a href="zhuceshangjia.html" class="list-group-item text-center" id="cm">注册商家</a>
+                    <a href="change_person_message.html" class="list-group-item text-center" id="xiu_x">修改商家信息</a>
+                    <a href="./shenqing.html" class="list-group-item text-center" ix="tian_y">申请</a>
+                    <a href="huoqushangpinliebiao.html" class="list-group-item text-center" ix="tian_y">获取商品列表</a>
+                    <a href="shagpinliebiao.html" class="list-group-item text-center" ix="tian_y">商品列表</a>
+                    <a href="tianjiashangpin.html" class="list-group-item text-center" ix="tian_y">添加商品</a>
+                    <a href="xiajiashangpin.html" class="list-group-item text-center" ix="tian_y">下架商品</a>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+<script>
+    $("#accordion").on("click", ".list-group-item", function(){
+        var href=$(this).attr("href");
+        location.src=href;
+        return false;
+    })
+</script>
+
+
+</body>
+<script src="../../lib/jquery/dist/jquery.min.js"></script>
+<script src="../../lib/bootstrap/dist/js/bootstrap.js"></script>
+</html>

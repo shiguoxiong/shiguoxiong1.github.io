@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../lib/bootstrap/dist/css/bootstrap.css">
+    <style>
+    span{
+        display:inline-block;
+        margin:50px 2px;
+        padding:20px 10px;
+    }
+    </style>
+</head>
+<body>
+
+
+<h1>商家信息查询</h1>
+<div class="contain">
+    <h3>请输入商家ID</h3>
+    <form role="form" id="qw">
+        <div class="form-group">
+            <input type="text" name="id" class="form-control">
+        </div>
+        <input type="submit" value="查询" class="form-control btn btn-success">
+    </form>
+    <div id="content"></div>
+</div>
+<!--<script type="text/html" id="test">-->
+    <!--{{if code==0}}-->
+    <!--{{each data.data as value i}}-->
+    <!--<tr>{{value.address}}</tr>-->
+    <!--<tr>{{value.createTime}}</tr>-->
+    <!--<tr>{{value.description}}</tr>-->
+    <!--<tr>{{value.email}}</tr>-->
+    <!--<tr>{{value.idCard}}</tr>-->
+    <!--<tr>{{value.latitude}}</tr>-->
+    <!--<tr>{{value.name}}</tr>-->
+    <!--<tr>{{value.owner}}</tr>-->
+    <!--{{/each}}-->
+    <!--{{/if}}-->
+<!--</script>-->
+</body>
+<script src="../../lib/artTemplate/dist/template.js"></script>
+<script src="../../lib/jquery/dist/jquery.min.js"></script>
+<script src="../../lib/bootstrap/dist/js/bootstrap.js"></script>
+<script src="../../lib/jQuery-pager-plugin/jquery.pager.js"></script>
+<script src="../../lib/layer/build/layer.js"></script>
+<script src="../../lib/jquery-form/jquery.form.js"></script>
+<script>
+    $.ajaxSetup({
+        headers: {'access-token':sessionStorage.getItem('manager')}
+    });
+    $('#qw').submit(function () {
+
+        $.get('http://192.168.1.110:3000/getSeller',$("#qw").serialize(),function(data){
+
+
+            var html;
+            html="<span>"+data.data.address+"</span>"+"<span>"
+                +data.data.createTime+"</span>"+"<span>"+data.data.description+"</span>"
+                +"<span>"+data.data.email+"</span>"+"<span>"+data.data.idCard+"</span>"
+                +"<span>"+data.data.latitude+"</span>"
+                +data.data.longitude+"</span>"+data.data.name+"</span>"+"</span>"+data.data.owner+"</span>"+"</span>"+data.data.phone+"</span>"
+            $("#content").append(html);
+        })
+
+
+        return false;
+    })
+
+
+</script>

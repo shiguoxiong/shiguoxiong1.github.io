@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></Title>
+        <link rel="stylesheet" href="../../lib/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../../lib/jQuery-pager-plugin/Pager.css">
+    <style>
+
+        .box li{width:50px ;
+            height:30px;
+            text-align: center;
+  float:left;
+            border:1px solid #ccc;
+
+        }
+        ul{
+            padding-left:0;
+          list-style: none;
+            margin:0 300px;
+        }
+    </style>
+</head>
+<body>
+<script type="text/html" id="test">
+        {{if count>0}}
+        <table class="table table-script table-bordered">
+            <tr>
+                <th >ID</th>
+                <th>商家地址</th>
+                <th>创建日期</th>
+                <th >纬度</th>
+                <th>经度</th>
+                <th >email</th>
+                <th >商家名称</th>
+                <th >商家状态</th>
+                <th>法人</th>
+                <th >电话</th>
+                <th>审核</th>
+                <th>禁用</th>
+            </tr>
+                {{each rows as value i}}
+            <tr>
+                <td>{{value.id}}</td>
+                <td>{{value.address}}</td>
+                <td>{{value.createTime}}</td>
+                <td>{{value.latitude}}</td>
+                <td>{{value.longitude}}</td>
+                <td>{{value.email}}</td>
+                <td>{{value.name}}</td>
+                <td>{{value.state}}</td>
+                <td>{{value.owner}}</td>
+                <td>{{value.phone}}</td>
+                <td><input type="button" data-state="{{value.state}}" data-id="{{value.id}}" class="btn btn-danger" value="审核商家"/></td>
+                <td><button class="btn btn-success" data-id="{{value.id}}">禁用商家</button></td>
+              </tr>
+                {{/each}}
+        </table>
+
+    {{/if}}
+</script>
+<div class="container ">
+    <h1>商家列表</h1>
+  <div id="list"></div>
+    <div class="box">
+
+    </div>
+</div>
+</body>
+
+<script src="../../lib/jquery/dist/jquery.min.js"></script>
+<script src="../../lib/bootstrap/dist/js/bootstrap.js"></script>
+<script src="../../lib/jQuery-pager-plugin/jquery.pager.js"></script>
+<script src="../../lib/artTemplate/dist/template.js"></script>
+<script>
+    var dd=document.getElementById("add")
+    $.ajaxSetup({
+        headers: {'access-token':sessionStorage.getItem('manager')}
+    });
+
+getDate(1)
+function getDate(index) {
+    $.get("http://192.168.1.110:3000/getAllSellers", {page: index, size: 5}, function (data) {
+     var html=template("test",data.data)
+        console.log(html)
+     document.getElementById("list").innerHTML=html;
+        $(".box").pager({pagenumber: index, pagecount: data.data.count, buttonClickCallback: getDate})
+
+    })
+}
+$("#list").on("click","button",function(){
+
+    var cc=$(this).data("id")
+   $.post("http://192.168.1.110:3000/seller/updateGoods",{id:cc},function(data){
+       alert("该商家已被禁用")
+   })
+})
+
+
+</script>
+<script>
+    $("#list").on("click","input",function(){
+        var bb=$(this).data("id")
+        var cc=$(this).data("state")
+        if(cc==11) {
+            $.post("http://192.168.1.110:3000/checkSeller", {id:bb,state: 1, message: "已审核"}, function (data) {
+
+                alert("该商家已审核")
+            })
+       }
+
+
+//         else{
+//                   cc=1
+//                $.post("http://192.168.1.110:3000/checkSeller",{id:1},function(data){
+//                    alert("该商家审核")
+//                })
+//            }
+
+
+    })
+</script>
+</html>

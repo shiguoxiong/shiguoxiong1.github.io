@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../lib/bootstrap/dist/css/bootstrap.css">
+    <style>
+        body{
+            /*background: #46b8da;*/
+            padding:20px 0;
+        }
+      #ifr{
+          position:absolute;
+          top:30px;
+          right:25px;
+          width:60%;
+          height:100%;
+
+      }
+
+    </style>
+</head>
+<body>
+<div class="container pull-left">
+        <div class="panel-group col-md-3" id="accordion" role="tablist" aria-multiselectable="true" >
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingTwo">
+                    <h4 class="panel-title">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            商家管理
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                    <div class="panel-body bg-primary">
+
+                        <a href="../shangjia/denglu.html" class="list-group-item text-center" id="sl">商家登录</a>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingThree">
+                    <h4 class="panel-title">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            商品管理
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                    <div class="panel-body bg-success">
+                        <a href="../shangjia/tianjiashangpin.html" class="list-group-item text-center" id="tp">添加商品</a>
+                        <a href="../shangjia/get_shangpin.html" class="list-group-item text-center" id="hp">获取商品</a>
+                        <a href="../shangjia/shangpinliebiao.html" class="list-group-item text-center" id="sx">商品列表信息</a>
+                        <a href="../shangjia/xiajia_shangpin.html" class="list-group-item text-center" id="xp">下架商品</a>
+                        <a href="../shangjia/change_shangpin.html" class="list-group-item text-center" id="xiu_p">修改商品</a>
+                        <a href="" class="list-group-item text-center" id="shang_x">商品类型</a>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingFour">
+                    <h4 class="panel-title">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
+                          管理员管理
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+                    <div class="panel-body bg-info">
+                        <a href="guanliyuan_denglu.html" class="list-group-item text-center" id="gl">管理员登录</a>
+
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+<iframe src="shop2.html" frameborder="0" id="ifr">
+
+</iframe>
+<script src="../../lib/jquery/dist/jquery.min.js"></script>
+<script src="../../lib/bootstrap/dist/js/bootstrap.js"></script>
+<script>
+
+  $("#accordion").on("click", ".list-group-item", function(){
+           window.location=$(this).attr("href");
+           return false;
+  })
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></Title>
+    <link rel="stylesheet" href="../../lib/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../../lib/jQuery-pager-plugin/Pager.css">
+    <style>
+        .content p span{
+
+            padding: 5px 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="content">
+    <form action="" role="form"  class="col-md-6" id="form2">
+        <div class="form-group">
+            <label for="">商品名称</label>
+            <input type="text" name="name" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="">价格</label>
+            <input type="text" name="price" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="">描述</label>
+            <input type="text" name="description" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="">图片</label>
+            <input type="file" name="images" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="">商品ID:</label>
+            <input type="text" name="id" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="">商家ID:</label>
+            <input type="text" name="sid" class="form-control">
+        </div>
+        <input type="submit" class="form-control btn btn-success" value="修改商品信息">
+    </form>
+</div>
+</body>
+<script src="../../lib/jquery/dist/jquery.min.js"></script>
+<script src="../../lib/bootstrap/dist/js/bootstrap.js"></script>
+<script src="../../lib/jQuery-pager-plugin/jquery.pager.js"></script>
+<script src="../../lib/jquery-form/jquery.form.js"></script>
+<script>
+    $.ajaxSetup({
+        headers: {'access-token':sessionStorage.getItem('manager-1')}
+    });
+    $.post("huoqushangpinliebiao.html?id=")
+    $('#form2').submit(function(e){
+        $(this).ajaxSubmit({
+            type:'post',
+            url:'http://192.168.1.110:3000/seller/updateGoods',
+            success:function(data){
+                console.log(data);
+                alert("修改成功")
+            }
+        });
+        e.preventDefault();
+    })
+
+</script>
+
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    /*创建数组*/
+//    var person = new Object();
+//    person.name="kevin";
+//    person.age=31;
+//    person.hody="篮球";
+//    person.phone=322222221;
+//    var per ={
+//       name:"rr",
+//        id:"222",
+//        famaily:"shi"
+//    }
+//    console.log(per)
+//    for(p in person){    /*数组遍历*/
+//        if(person[p]){
+//            console.log(p+":"+person[p])
+//        }
+//    }
+    function Person(name,age,job)
+    {
+        //属性
+        this.name=name;
+        this.age=age;
+        this.job=job;
+        this.friends=["Jams","Martin"]; }
+
+        //方法
+//        if(typeof this.sayName !="function")
+//        {
+//            Person.prototype.sayName=function()
+//            {
+//                alert(this.name);
+//            };
+//
+//            Person.prototype.sayFriends=function()
+//            {
+//                alert(this.friends);
+//            };
+//        }
+
+
+    var person = new Person("kevin",31,"SE");
+    console.log(person)
+//    person.sayName();
+//    person.sayFriends();
+</script>
+</html>

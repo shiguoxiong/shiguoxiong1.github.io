@@ -1,0 +1,14 @@
+{
+  "name": "jQuery-pager-plugin",
+  "homepage": "https://github.com/jonpauldavies/jquery-pager-plugin",
+  "_release": "aa0c5b4c49",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "aa0c5b4c4921aa9793bf001e967b5166270c6c44"
+  },
+  "_source": "https://github.com/jonpauldavies/jquery-pager-plugin.git",
+  "_target": "*",
+  "_originalSource": "jQuery-pager-plugin",
+  "_direct": true
+}
